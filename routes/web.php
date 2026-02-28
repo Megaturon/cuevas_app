@@ -5,9 +5,12 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\UserController;
 use App\Services\UserService;
 use Illuminate\Support\Facades\Response;
+use App\Http\Controllers\ProductController;
+use App\Services\ProductService;
+use App\Services\TaskService; 
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('welcome', ['name' => 'cuevas-app']);
 });
 
 //Controller
@@ -75,4 +78,18 @@ Route::get('/token', function (Request $request) {
 
 Route::post('/token', function(Request $request) {
     return $request->all();
+});
+
+//Controller
+//Middleware
+Route::get('/users', [UserController::class, 'index'])->middleware('user-middleware');
+
+//Resource
+Route::resource('products', ProductController::class);
+
+//View with Data
+Route::get('/product-list', function (ProductService $productService) {
+    $data['products'] = $productService->listProducts();
+    //dd($data);
+    return view('products.list', $data);
 });
