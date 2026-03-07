@@ -1,7 +1,6 @@
-<div class="container">
-    <!-- Order your soul. Reduce your wants. - Augustine -->
-    <h1>Products</h1>
-    <table class="table table-stripped">
+<x-layout>
+    <x-slot:heading><h1>Products</h1></x-slot>
+    <x-table>
         <thead>
             <tr>
                 <th>Id</th>
@@ -18,17 +17,5 @@
                 </tr>
             @endforeach
         </tbody>
-    </table>
-
-    <h1>Tasks</h1>
-    <ul>
-        @foreach ($tasks as $task)
-            <li>{{ $task }}</li>
-        @endforeach
-    </ul>
-
-    <p>Global Variables</p>
-    <p>{{ $sharedVariable }}</p>
-
-    <p>Product Key: {{ $productKey }}</p>
-</div>
+    </x-table>
+</x-layout>

@@ -11,10 +11,12 @@ class UserController extends Controller
     public function show() {
         $users = [
             [
+                'id' => 1,
                 'name' => 'Bob Cruz',
                 'gender' => 'Male'
             ],
             [
+                'id' => 2,
                 'name' => 'Alice Gomez',
                 'gender' => 'Female'
             ]
@@ -23,7 +25,7 @@ class UserController extends Controller
     }
 
     public function index(UserService $userService) {
-        return $userService->listUsers();
+        return view('users.index', ['users' => $userService->listUsers()]);
     }
 
     public function first(UserService $userService) {
